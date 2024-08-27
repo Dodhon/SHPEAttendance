@@ -4,19 +4,21 @@ import csv
 
 
 allPeople = set()
+masterDf = pd.DataFrame
 
 def createTable():
-    files = getFiles()
-    masterDf = pd.DataFrame
+    
     createNamesColumn(masterDf)
+    dfs = list()
+    
+
+def updateTable():
+    files = getFiles()
     dfs = list()
     for file in files:
         dfs.append(pd.read_csv(file)) ## dfs is now a list of dataframes. Each data frame is one attendance form 
     for df in dfs:
         allPeople.add(getNames(df))
-
-def updateTable():
-    pass
 
 def createNamesColumn(df):
     if "names" not in df:
@@ -24,6 +26,11 @@ def createNamesColumn(df):
 
 def getNames(df): ## will return list of all names of people that attended a given event
     pass 
+
+def processName(name):
+    name = str(name).lower.replace(" ", "")
+
+
 
 
 
