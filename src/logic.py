@@ -15,6 +15,9 @@ def createTable():
     for df in dfs:
         allPeople.add(getNames(df))
 
+def updateTable():
+    pass
+
 def createNamesColumn(df):
     if "names" not in df:
             df.insert(0,"names", allPeople)
