@@ -8,13 +8,16 @@ allPeople = set()
 def createTable():
     files = getFiles()
     masterDf = pd.DataFrame
+    createNamesColumn(masterDf)
     dfs = list()
     for file in files:
         dfs.append(pd.read_csv(file)) ## dfs is now a list of dataframes. Each data frame is one attendance form 
     for df in dfs:
         allPeople.add(getNames(df))
-        
 
+def createNamesColumn(df):
+    if "names" not in df:
+            df.insert(0,"names", allPeople)
 
 def getNames(df): ## will return list of all names of people that attended a given event
     pass 
