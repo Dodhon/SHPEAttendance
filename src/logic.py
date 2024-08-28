@@ -18,17 +18,19 @@ def updateTable():
     for file in files:
         dfs.append(pd.read_csv(file)) ## dfs is now a list of dataframes. Each data frame is one attendance form 
     for df in dfs:
-        allPeople.add(getNames(df))
+        allPeople.add(getEmails(df))
 
-def createNamesColumn(df):
-    if "names" not in df:
-            df.insert(0,"names", allPeople)
+def createEmailColumn(df):
+    if "Hawk Email" not in df:
+            df.insert(0,"Hawk Email", allPeople)
 
-def getNames(df): ## will return list of all names of people that attended a given event
-    pass 
-
+def getEmails(df): ## will return list of all names of people that attended a given event
+    emails = list()
+    for e in df["Hawk Email"]:
+        pass
+    return emails
 def processName(name):
-    name = str(name).lower.replace(" ", "")
+    return str(name).lower.replace(" ", "")
 
 
 
