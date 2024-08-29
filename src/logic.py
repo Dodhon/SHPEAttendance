@@ -3,7 +3,6 @@ import os
 
 def process_emails(emails):
     return [email.lower() for email in emails]
-
 def getFiles(path="/Users/thuptenwangpo/Documents/GitHub/SHPEAttendance/attendanceFormResponses/"):
     return [os.path.join(path, f) for f in os.listdir(path) if f.endswith('.csv')]
 
