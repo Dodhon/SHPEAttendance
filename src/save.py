@@ -1,6 +1,9 @@
 import pandas as pd
+import datetime
 
-outputFile = "/Users/thuptenwangpo/Downloads/masterAttendanceSheet.csv"
+
+now = datetime.datetime.now()
+outputFile = f"/Users/thuptenwangpo/Downloads/masterAttendanceSheet{now}.csv"
 df = pd.read_csv("/Users/thuptenwangpo/Documents/GitHub/SHPEAttendance/masterAttendanceSheet/masterAttendance.csv")
 
 
