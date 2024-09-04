@@ -1,17 +1,17 @@
 import pandas as pd
 import datetime
 
-
+## file save details
 now = datetime.datetime.now()
-outputFile = f"/Users/thuptenwangpo/Downloads/masterAttendanceSheet{now}.csv"
-good = "masterAttendanceSheet/masterAttendance"
+repoPath = "/Users/thuptenwangpo/Documents/GitHub/SHPEAttendance/"
 test = "testFiles/masterAttendanceTest.csv"
+main = "masterAttendanceSheet/masterAttendanceSheet.csv"
+outputFile = f"/Users/thuptenwangpo/Downloads/masterAttendanceSheet{now}.csv"
 
 
-#### CHANGE THE BELOW FROM GOOD TO TEST OR VICE VERSA AS NECESSARY
-df = pd.read_csv(f"/Users/thuptenwangpo/Documents/GitHub/SHPEAttendance/{test}")
+df = pd.read_csv(f"{repoPath}{main}")
 
 
 if __name__ == "__main__":
     df.to_csv(outputFile, index=True)
-    print("csv saved to downloads")
+    print(f"csv saved to downloads as: {outputFile}")

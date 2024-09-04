@@ -51,7 +51,7 @@ if __name__ == "__main__":
     binaryMatrix = add_attendance_stats(binaryMatrix) 
 
     filePath = "/Users/thuptenwangpo/Documents/GitHub/SHPEAttendance/"
-    fileName = "masterAttendanceTest.csv"
+    fileName = "Test.csv"
     folderName = "testFiles/"
     
     output_file = f"{filePath}{folderName}{fileName}"

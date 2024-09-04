@@ -1,9 +1,22 @@
 import pandas as pd
 import os
 
+
+## Each attendance forms needs an email question
+###########################################################################
+
+## file save details
+repoPath = "/Users/thuptenwangpo/Documents/GitHub/SHPEAttendance/"
+fileName = "masterAttendanceSheet.csv"
+folderName = "masterAttendanceSheet/"
+attendanceResponsesFolder = "/Users/thuptenwangpo/Documents/GitHub/SHPEAttendance/attendanceFormResponses/"
+
+
+
 def process_emails(emails):
     return [email.lower() for email in emails]
-def getFiles(path="/Users/thuptenwangpo/Documents/GitHub/SHPEAttendance/attendanceFormResponses/"):
+
+def getFiles(path=attendanceResponsesFolder):
     return [os.path.join(path, f) for f in os.listdir(path) if f.endswith('.csv')]
 
 def createMasterAttendance(files):
@@ -28,14 +41,27 @@ def createMasterAttendance(files):
 
 def createBinaryMatrix(masterDf):
     binaryMatrix = masterDf.pivot_table(index='Email', columns='Event', aggfunc='size', fill_value=0)
-    binaryMatrix = binaryMatrix.applymap(lambda x: 1 if x > 0 else 0)
+    binaryMatrix = binaryMatrix.map(lambda x: 1 if x > 0 else 0)
+    return binaryMatrix
+
+def add_attendance_stats(binaryMatrix):
+    attendance_counts = binaryMatrix.sum(axis=0)
+    attendance_counts.name = 'Event Attendance'
+
+    binaryMatrix = pd.concat([pd.DataFrame(attendance_counts).T, binaryMatrix])
+
+    people_counts = binaryMatrix.sum(axis=1)
+
+    binaryMatrix.insert(0, 'Total Attendance', people_counts)
+
     return binaryMatrix
 
 if __name__ == "__main__":
     files = getFiles()
     master_attendance = createMasterAttendance(files)
     binaryMatrix = createBinaryMatrix(master_attendance)
-
-    output_file = "/Users/thuptenwangpo/Documents/GitHub/SHPEAttendance/masterAttendanceSheet/masterAttendance.csv"
-    binaryMatrix.to_csv(output_file, index=True)
-    print(f"Master Attendance saved to {output_file}")
+    binaryMatrix = add_attendance_stats(binaryMatrix) 
+    
+    outputFile = f"{repoPath}{folderName}{fileName}"
+    binaryMatrix.to_csv(outputFile, index=True)
+    print(f"Master Attendance Sheet saved to {outputFile}")
