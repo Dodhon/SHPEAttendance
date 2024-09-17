@@ -64,4 +64,4 @@ if __name__ == "__main__":
     
     outputFile = f"{repoPath}{folderName}{fileName}"
     binaryMatrix.to_csv(outputFile, index=True)
-    print(f"Master Attendance Sheet saved to {outputFile}")
+    print(f"Master Attendance Sheet updated")
