@@ -3,16 +3,27 @@ import os
 
 
 ## Each attendance forms needs an email question
-###########################################################################
+#################################
 
 ## file save details
+#change as per semester
+sample_semester = "Fall2024"
+semester = "Spring2025"
 repoPath = "/Users/thuptenwangpo/Documents/GitHub/SHPEAttendance/"
-fileName = "masterAttendanceSheet.csv"
+fileName = f"masterAttendanceSheet{semester}.csv"
 folderName = "masterAttendanceSheet/"
-attendanceResponsesFolder = "/Users/thuptenwangpo/Documents/GitHub/SHPEAttendance/attendanceFormResponses/"
+attendanceResponsesFolder = f"/Users/thuptenwangpo/Documents/GitHub/SHPEAttendance/attendanceFormResponses{semester}/"
 
-
-
+def check_folder_exists():
+    if not os.path.exists(attendanceResponsesFolder):
+        os.makedirs(attendanceResponsesFolder)
+def check_empty_folder():
+    dir = os.listdir(attendanceResponsesFolder)
+    if len(dir) == 0: 
+        return True
+    else: 
+        return False
+    
 def process_emails(emails):
     return [email.lower() for email in emails]
 
@@ -57,11 +68,16 @@ def add_attendance_stats(binaryMatrix):
     return binaryMatrix
 
 if __name__ == "__main__":
-    files = getFiles()
-    master_attendance = createMasterAttendance(files)
-    binaryMatrix = createBinaryMatrix(master_attendance)
-    binaryMatrix = add_attendance_stats(binaryMatrix) 
-    
-    outputFile = f"{repoPath}{folderName}{fileName}"
-    binaryMatrix.to_csv(outputFile, index=True)
-    print(f"Master Attendance Sheet updated")
+    check_folder_exists()
+    if check_empty_folder() == True:
+        print("Attendance folder is empty")
+        
+    else:
+        files = getFiles()
+        master_attendance = createMasterAttendance(files)
+        binaryMatrix = createBinaryMatrix(master_attendance)
+        binaryMatrix = add_attendance_stats(binaryMatrix) 
+        
+        outputFile = f"{repoPath}{folderName}{fileName}"
+        binaryMatrix.to_csv(outputFile, index=True)
+        print(f"Master Attendance Sheet updated")

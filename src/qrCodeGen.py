@@ -2,9 +2,9 @@ import requests
 import os
 
 # Data to encode
-data = "https://docs.google.com/forms/d/e/1FAIpQLSes8Gsf7XbL9haJcA6C54OU9jvc92JAJ2-ZKrKol7VWPv5Q9Q/viewform?usp=sf_link"
+data = "https://www.canva.com/design/DAGXEoTB1B0/Li7bc7Smhk-k3fiRTSxedA/view?utm_content=DAGXEoTB1B0&utm_campaign=share_your_design&utm_medium=link&utm_source=shareyourdesignpanel"
 directory = "/Users/thuptenwangpo/Documents/GitHub/SHPEAttendance/qr_codes"
-title = "shpetinas_interest_form"
+title = "FCN Form"
 
 
 # API endpoint
