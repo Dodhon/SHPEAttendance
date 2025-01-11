@@ -70,7 +70,7 @@ def add_attendance_stats(binaryMatrix):
 if __name__ == "__main__":
     check_folder_exists()
     if check_empty_folder() == True:
-        print("Attendance folder is empty")
+        print("Attendance folder is empty. Please check that the semester and folder variable are set properly and folders are actually updated with info from attendance forms.")
         
     else:
         files = getFiles()
@@ -80,4 +80,4 @@ if __name__ == "__main__":
         
         outputFile = f"{repoPath}{folderName}{fileName}"
         binaryMatrix.to_csv(outputFile, index=True)
-        print(f"Master Attendance Sheet updated")
+        print(f"Master Attendance Sheet updated/created.")
