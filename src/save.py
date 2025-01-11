@@ -5,7 +5,8 @@ import datetime
 now = datetime.datetime.now()
 repoPath = "/Users/thuptenwangpo/Documents/GitHub/SHPEAttendance/"
 test = "testFiles/masterAttendanceTest.csv"
-main = "masterAttendanceSheet/masterAttendanceSheet.csv"
+
+main = "masterAttendanceSheet/masterAttendanceSheetFall2024.csv"
 outputFile = f"/Users/thuptenwangpo/Downloads/masterAttendanceSheet{now}.csv"
 
 

@@ -8,7 +8,7 @@ import os
 ## file save details
 #change as per semester
 sample_semester = "Fall2024"
-semester = "Spring2025"
+semester = "Fall2024"
 repoPath = "/Users/thuptenwangpo/Documents/GitHub/SHPEAttendance/"
 fileName = f"masterAttendanceSheet{semester}.csv"
 folderName = "masterAttendanceSheet/"
