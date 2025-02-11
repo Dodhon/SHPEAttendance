@@ -1,5 +1,6 @@
 import requests
 import os
+from main import semester
 
 def sanitize_filename(filename):
     # Replace problematic characters with underscores

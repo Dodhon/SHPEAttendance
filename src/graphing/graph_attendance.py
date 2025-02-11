@@ -1,9 +1,11 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import os
+import datetime
 
 # File path to the master attendance sheet
-file_path = "/Users/thuptenwangpo/Documents/GitHub/SHPEAttendance/masterAttendanceSheet/masterAttendanceSheetFall2024.csv"
+semester = "Fall2024"
+file_path = f"/Users/thuptenwangpo/Documents/GitHub/SHPEAttendance/masterAttendanceSheet/masterAttendanceSheet{semester}.csv"
 
 def plot_attendance_pie_chart(attendance_counts, save_path):
     # Create pie chart
@@ -16,7 +18,7 @@ def plot_attendance_pie_chart(attendance_counts, save_path):
     )
     plt.ylabel('')  # Remove default ylabel
     plt.savefig(save_path, bbox_inches='tight')  # Save the chart
-    plt.show()
+    plt.close()  # Close the figure instead of showing it
 
 if __name__ == "__main__":
     if not os.path.exists(file_path):
@@ -37,13 +39,11 @@ if __name__ == "__main__":
                 attendance_counts = attendance_counts.drop("Total Attendance")
             
             # File path for saving the chart
-            ##### change for appropriate semester
-            save_path = "attendance_distribution/attendance_pie_chart_fall2024.png"
-            
-            # Ensure the output directory exists
-            os.makedirs(os.path.dirname(save_path), exist_ok=True)
+            graphs_folder = "graphs"
+            os.makedirs(graphs_folder, exist_ok=True)  # Create graphs folder if it doesn't exist
+            save_path = os.path.join(graphs_folder, f"attendance_pie_chart_{semester}_{datetime.datetime.now().strftime('%Y-%m-%d')}.png")
             
             # Plot and save the pie chart
             plot_attendance_pie_chart(attendance_counts, save_path)
             
-            print(f"Pie chart saved as {save_path}.")
+            print(f"Pie chart saved as {save_path}")
